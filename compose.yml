@@ -6,4 +6,4 @@ services:
       - "8081:80"
     deploy:
       mode: replicated
-      replicas: 5
+      replicas: 3
