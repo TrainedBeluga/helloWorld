@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: snowstormkitten/helloworld
+    ports:
+      - "8081:80"
+    deploy:
+      mode: replicated
+      replicas: 5

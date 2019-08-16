@@ -1,0 +1,5 @@
+name: agGo web app sample
+version: 1.0.0
+description: agGo basic web app adding pvc
+maintainers:
+  - name: A Gerlitz

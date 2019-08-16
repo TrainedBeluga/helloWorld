@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggo-dep
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: aggo
+  template:
+    metadata:
+      labels:
+        app: aggo
+    spec:
+      containers:
+        - name: aggo-pod
+          image: snowstormkitten/helloworld:0.2
+          ports:
+          - containerPort: 80
