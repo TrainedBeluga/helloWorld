@@ -13,7 +13,7 @@ pipeline {
         stage('build') {
             steps{
                 script {
-                    dockerImage = registry + :${env.BUILD_NUMBER}
+                    dockerImage = registry + ":$BUILD_NUMBER"
                 }
             }
         }
