@@ -3,6 +3,7 @@ pipeline {
         registry = "docker.build dtr.alexg.dtcntr.net/admin/helloworld"
         registryCredential = 'admin'
     }
+    agent any
     stages{
         stage('clone') {
             steps {
