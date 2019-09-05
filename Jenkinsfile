@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "docker.build dtr.alexg.dtcntr.net/admin/helloworld"
+        registry = "dtr.alexg.dtcntr.net/admin/helloworld"
         registryCredential = 'admin'
     }
     agent any
@@ -14,7 +14,7 @@ pipeline {
         stage('build') {
             steps{
                 script {
-                    dockerImage = docker.build(registry + ":$BUILD_NUMBER")
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             }
         }
