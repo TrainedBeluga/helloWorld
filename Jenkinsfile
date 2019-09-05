@@ -1,9 +1,37 @@
-node {
-    stage('clone') {
-        checkout scm
+pipeline {
+    environment {
+        registry = "docker.build dtr.alexg.dtcntr.net/admin/helloworld"
+        registryCredential = 'admin'
     }
+    stages{
+        stage('clone') {
+            steps {
+                checkout scm
+            }
+        }
 
-    stage('build') {
-        docker_image = docker.build("dtr.alexg.dtcntr.net/admin/helloworld")
+        stage('build') {
+            steps{
+                script {
+                    dockerImage = registry + :${env.BUILD_NUMBER}
+                }
+            }
+        }
+
+        stage('push') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage('Remove unused docker image') {
+            steps {
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
     }
 }
