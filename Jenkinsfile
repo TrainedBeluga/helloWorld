@@ -22,7 +22,7 @@ pipeline {
         stage('push') {
             steps{
                 script {
-                    docker.withRegistry( '', registryCredential) {
+                    docker.withRegistry( 'dtr.alexg.dtcntr.net', registryCredential) {
                         dockerImage.push()
                     }
                 }
