@@ -29,11 +29,4 @@ pipeline {
             }
         }
     }
-    stages{
-        stage('test1'){
-            steps{
-                echo 'hello'
-            }
-        }
-    }
 }
