@@ -29,4 +29,9 @@ pipeline {
             }
         }
     }
+    stages{
+        stage('test1'){
+            
+        }
+    }
 }

@@ -1,8 +1,12 @@
-FROM golang:latest
+FROM golang:latest AS build
 
-RUN mkdir /test
-ADD . /test/
-WORKDIR /test
+RUN mkdir /app
+ADD . /app/
+WORKDIR /app
 RUN go build -o helloWorld .
 
-CMD ["/test/helloWorld"]
+FROM golang:latest
+RUN mkdir /app
+WORKDIR /app
+COPY --from=build /app/helloWorld /app/helloWorld.go /app/layout.html /app/handler_test.go ./
+CMD ["/app/helloWorld"]
