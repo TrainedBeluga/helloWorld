@@ -4,6 +4,11 @@ pipeline {
         registryCredential = 'admin'
     }
     agent any
+    triggers{
+        GenericTrigger(
+            token: 'build'
+        )
+    }
     stages{
         stage('clone') {
             steps {
