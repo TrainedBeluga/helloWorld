@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "dtr.alexg.dtcntr.net/admin/helloworld"
         registryCredential = 'admin'
-        ucpCredential='ucpAdmin'
+        ucpAdmin='ucpAdmin'
     }
     agent any
     triggers{
