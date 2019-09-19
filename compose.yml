@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: 34.229.18.227/admin/helloworld:latest
+    image: dtr.alexg.dtcntr.net/admin/helloworld:${IMAGE_TAG}
     ports:
       - "8081:80"
     deploy:

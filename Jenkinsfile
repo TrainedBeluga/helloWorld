@@ -1,3 +1,5 @@
+IMAGE_TAG="$BUILD_NUMBER"
+
 pipeline {
     environment {
         registry = "dtr.alexg.dtcntr.net/admin/helloworld"
