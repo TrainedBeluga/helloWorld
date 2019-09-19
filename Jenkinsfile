@@ -38,8 +38,10 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                withDockerServer([credentialsId: ucpAdmin, uri: 'tcp://ucp.alexg.dtcntr.net:443']){
-                    sh "docker stack deploy -c compose.yml web"
+                withEnv(["IMAGE_TAG=${IMAGE_TAG}"]){
+                    withDockerServer([credentialsId: ucpAdmin, uri: 'tcp://ucp.alexg.dtcntr.net:443']){
+                        sh "docker stack deploy -c compose.yml web"
+                    }
                 }
             }
         }
