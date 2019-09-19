@@ -35,8 +35,10 @@ pipeline {
             }
         }
         stage('Deploy'){
-            withDockerServer([credentialsId: ucpCredential, uri: 'https://ucp.alexg.dtcntr.net']){
-                sh "docker stack deploy -c compose.yml web"
+            steps{
+                withDockerServer([credentialsId: ucpCredential, uri: 'https://ucp.alexg.dtcntr.net']){
+                    sh "docker stack deploy -c compose.yml web"
+                }
             }
         }
     }
