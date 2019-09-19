@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                withDockerServer([credentialsId: ucpCredential, uri: 'ucp.alexg.dtcntr.net']){
+                withDockerServer([credentialsId: ucpCredential, uri: 'tcp://ucp.alexg.dtcntr.net:443']){
                     sh "docker stack deploy -c compose.yml web"
                 }
             }
