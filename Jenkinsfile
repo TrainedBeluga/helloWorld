@@ -2,6 +2,7 @@ pipeline {
     environment {
         registry = "dtr.alexg.dtcntr.net/admin/helloworld"
         registryCredential = 'admin'
+        ucpCredential='ucpAdmin'
     }
     agent any
     triggers{
@@ -10,13 +11,13 @@ pipeline {
         )
     }
     stages{
-        stage('clone') {
+        stage('Clone') {
             steps {
                 checkout scm
             }
         }
 
-        stage('build') {
+        stage('Build') {
             steps{
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
@@ -24,13 +25,18 @@ pipeline {
             }
         }
 
-        stage('push') {
+        stage('Push') {
             steps{
                 script {
                     docker.withRegistry( 'https://dtr.alexg.dtcntr.net', registryCredential) {
                         dockerImage.push()
                     }
                 }
+            }
+        }
+        stage('Deploy'){
+            withDockerServer([credentialsId: ucpCredential, uri: 'https://ucp.alexg.dtcntr.net']){
+                sh "docker stack deploy -c compose.yml web"
             }
         }
     }
