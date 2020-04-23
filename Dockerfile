@@ -9,4 +9,5 @@ FROM golang:latest
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /app/helloWorld /app/helloWorld.go /app/layout.html /app/handler_test.go ./
+RUN chmod a+r+w /app/helloWorld
 CMD ["/app/helloWorld"]
